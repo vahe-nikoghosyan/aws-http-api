@@ -1,0 +1,33 @@
+# Welcome to Serverless!
+
+service: simple
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+#  iamRoleStatements:
+#    - Effect: Allow
+#      Action:
+#        - dynamodb:Query
+#        - dynamodb:Scan
+#        - dynamodb:GetItem
+#        - dynamodb:PutItem
+#      Resource: "*"
+
+functions:
+  welcomeDoubleCoconut:
+    handler: api/handler.get
+    memorySize: 128
+    description: AWS lambda.
+    events:
+      - http:
+          path: /
+          method: get
+
+plugins:
+  - serverless-offline
